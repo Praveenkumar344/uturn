@@ -1,0 +1,78 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blogs",
+  "info": {
+    "singularName": "blog",
+    "pluralName": "blogs",
+    "displayName": "Blog"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Category": {
+      "type": "string",
+      "required": true
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Title",
+      "required": true
+    },
+    "Content": {
+      "type": "richtext",
+      "required": true
+    },
+    "CoverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Video": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "PublishedTime": {
+      "type": "date"
+    },
+    "likes": {
+      "type": "integer"
+    },
+    "dislikes": {
+      "type": "integer"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "blog"
+    }
+  }
+}

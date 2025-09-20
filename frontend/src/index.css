@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+@import "tailwindcss";
+
+@tailwind utilities;
+ @plugin "@tailwindcss/typography";
+@utility upDown {
+  animation: upDown 2s ease-in-out infinite;
+}
+@theme {
+  @keyframes upDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+  }
+  --font-boldonse:Boldonse,"sans-serif";
+  --font-castoro:Castoro,"serif";
+  --font-plus-jakarta:Plus Jakarta Sans,"sans-serif"; 
+}
+
+/* Globals */
+:root { scroll-behavior: smooth; }
+
+
+/***** Spinner *****/
+.spinner-enter { opacity: 1; visibility: visible; }
+.spinner-leave { opacity: 0; visibility: hidden; transition: opacity .5s ease-out; }
+
+
+/* Simple fade/slide utility for on-view animations */
+.reveal { opacity: 0; transform: translateY(16px); transition: all .6s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }
