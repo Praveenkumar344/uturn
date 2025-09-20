@@ -227,7 +227,7 @@ export default function BlogDetail() {
           <img
             src={
               blog.CoverImage?.url
-                ? `https://strapi-9b98.onrender.com/${blog.CoverImage.url}`
+                ? `https://strapi-9b98.onrender.com${blog.CoverImage.url}`
                 : "/assets/happy_women.jpg"
             }
             alt={blog.Title}
@@ -325,7 +325,7 @@ export default function BlogDetail() {
                   className="w-[100px] aspect-square object-cover rounded-2xl m-3 mb-5"
                   src={
                     item.CoverImage?.url
-                      ? `https://strapi-9b98.onrender.com/{item.CoverImage.url}`
+                      ? `https://strapi-9b98.onrender.com${item.CoverImage.url}`
                       : "/assets/happy_women.jpg"
                   }
                   alt={item.Title}
