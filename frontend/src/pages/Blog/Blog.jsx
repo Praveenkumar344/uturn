@@ -13,7 +13,7 @@ export default function Blog() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch("http://localhost:1337/api/blogs?populate=*");
+        const res = await fetch("https://strapi-9b98.onrender.com/api/blogs?populate=*");
         const data = await res.json();
         setBlogs(data.data || []);
       } catch (err) {
@@ -55,7 +55,7 @@ export default function Blog() {
             >
               <img
                 className="w-[175px] md:w-[50%]  aspect-[4/3] object-cover  rounded-2xl md:m-2"
-                src={item.CoverImage?.url ? `http://localhost:1337${item.CoverImage.url}` : "/assets/happy_women.jpg"}
+                src={item.CoverImage?.url ? `https://strapi-9b98.onrender.com${item.CoverImage.url}` : "/assets/happy_women.jpg"}
                 alt={item.Title}
               />
               <div className="flex flex-col ml-2 md:m-5 justify-center mr-auto w-full">
@@ -87,7 +87,7 @@ export default function Blog() {
               >
                 <img
                   className="w-[100px] aspect-square object-cover rounded-2xl m-3 mb-5"
-                  src={item.CoverImage?.url ? `http://localhost:1337${item.CoverImage.url}` : "/assets/happy_women.jpg"}
+                  src={item.CoverImage?.url ? `https://strapi-9b98.onrender.com${item.CoverImage.url}` : "/assets/happy_women.jpg"}
                   alt={item.Title}
                 />
                 <div className="flex flex-col justify-center">

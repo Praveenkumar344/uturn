@@ -27,11 +27,11 @@ export default function BlogDetail() {
 
   // Fetch blog
   useEffect(() => {
-    fetch(`http://localhost:1337/api/blogs/${id}`)
+    fetch(`https://strapi-9b98.onrender.com/api/blogs/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setBlog(data.data);
-        setLikesCount(data.data?.likes || 0   );
+        setLikesCount(data.data?.likes || 0);
         setDislikesCount(data.data?.dislikes || 0);
       });
 
@@ -41,7 +41,7 @@ export default function BlogDetail() {
   // Fetch comments
   const fetchComments = async () => {
     const res = await fetch(
-      `http://localhost:1337/api/comments?filters[blog][documentId][$eq]=${id}&sort=createdAt:desc&pagination[limit]=10`
+      `https://strapi-9b98.onrender.com/api/comments?filters[blog][documentId][$eq]=${id}&sort=createdAt:desc&pagination[limit]=10`
     );
     const data = await res.json();
     setComments(data.data || []);
@@ -57,7 +57,7 @@ export default function BlogDetail() {
     setLikesCount(updatedLikes);
     if (disliked) setDislikesCount(updatedDislikes);
 
-    await fetch(`http://localhost:1337/api/blogs/${id}`, {
+    await fetch(`https://strapi-9b98.onrender.com/api/blogs/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -79,7 +79,7 @@ export default function BlogDetail() {
     setDislikesCount(updatedDislikes);
     if (liked) setLikesCount(updatedLikes);
 
-    await fetch(`http://localhost:1337/api/blogs/${id}`, {
+    await fetch(`https://strapi-9b98.onrender.com/api/blogs/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -95,21 +95,20 @@ export default function BlogDetail() {
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!newComment.text || !newComment.name || !newComment.email) {
-
       return;
     }
 
-    await fetch("http://localhost:1337/api/comments", {
+    await fetch("https://strapi-9b98.onrender.com/api/comments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-      data: {
-        Text: newComment.text,
-        Name: newComment.name,
-        Email: newComment.email,
-         blog: id,
-      },
-    }),
+        data: {
+          Text: newComment.text,
+          Name: newComment.name,
+          Email: newComment.email,
+          blog: id,
+        },
+      }),
     });
 
     setNewComment({ name: "", email: "", text: "" });
@@ -124,15 +123,15 @@ export default function BlogDetail() {
     const fetchBlog = async () => {
       try {
         const res = await fetch(
-          `http://localhost:1337/api/blogs/${id}?populate=*`
+          `https://strapi-9b98.onrender.com/api/blogs/${id}?populate=*`
         );
         const data = await res.json();
         setBlog(data.data || null);
-          if (data.data?.id) {
-        setBlog((prev) => ({ ...prev, strapiId: data.data.id }));
-      }
+        if (data.data?.id) {
+          setBlog((prev) => ({ ...prev, strapiId: data.data.id }));
+        }
         const blogs_res = await fetch(
-          "http://localhost:1337/api/blogs?populate=*"
+          "https://strapi-9b98.onrender.com/api/blogs?populate=*"
         );
         const blogs_data = await blogs_res.json();
         setBlogs(blogs_data.data || []);
@@ -160,9 +159,7 @@ export default function BlogDetail() {
       </section>
       <section className="flex flex-col p-3 md:p-5 md:flex-row md:w-[90%] justify-between">
         <div className="max-w-4xl mx-auto md:p-6 flex flex-col ">
-          <div
-            className="relative z-10 max-w-7xl flex-col"
-          >
+          <div className="relative z-10 max-w-7xl flex-col">
             <h1 className="font-plus-jakarta md:text-normal mb-4 tracking-widest">
               {blog.Category.toUpperCase()} | {formatDate(blog.publishedAt)}
             </h1>
@@ -178,12 +175,18 @@ export default function BlogDetail() {
                   </p>
                   <img
                     src={
-                      liked
+                      hoverLike
+                        ? liked
+                          ? "/assets/icons/like_filled.png"
+                          : "/assets/icons/like_filled.png"
+                        : liked
                         ? "/assets/icons/like_filled.png"
                         : "/assets/icons/like_outline.png"
                     }
                     className="w-7 h-7 cursor-pointer"
                     onClick={handleLike}
+                    onMouseEnter={() => setHoverLike(true)}
+                    onMouseLeave={() => setHoverLike(false)}
                   />
                 </div>
                 <div className="flex flex-row items-start space-x-2">
@@ -192,12 +195,18 @@ export default function BlogDetail() {
                   </p>
                   <img
                     src={
-                      disliked
+                      hoverDislike
+                        ? disliked
+                          ? "/assets/icons/dislike_filled.png"
+                          : "/assets/icons/dislike_filled.png"
+                        : disliked
                         ? "/assets/icons/dislike_filled.png"
                         : "/assets/icons/dislike_outline.png"
                     }
                     className="w-7 h-7 cursor-pointer"
                     onClick={handleDislike}
+                    onMouseEnter={() => setHoverDislike(true)}
+                    onMouseLeave={() => setHoverDislike(false)}
                   />
                 </div>
                 <div className=" border-l-2 border-black pl-4 flex flex-row items-start space-x-2">
@@ -218,7 +227,7 @@ export default function BlogDetail() {
           <img
             src={
               blog.CoverImage?.url
-                ? `http://localhost:1337${blog.CoverImage.url}`
+                ? `https://strapi-9b98.onrender.com/${blog.CoverImage.url}`
                 : "/assets/happy_women.jpg"
             }
             alt={blog.Title}
@@ -241,22 +250,27 @@ export default function BlogDetail() {
                 Comments
               </h1>
               <div className="space-y-4 border-b-2 border-gray-300 p-4">
-                
-                {comments.length === 0 && <p className="text-lg">No comments yet.</p>}
+                {comments.length === 0 && (
+                  <p className="text-lg">No comments yet.</p>
+                )}
                 {comments.map((c) => (
-                  <div key={c.id} className="p-3 border border-gray-400 rounded-lg bg-gray-50">
-                    <p className="text-sm text-gray-500 font-medium tracking-widest">{c.Name.charAt(0).toUpperCase() + c.Name.slice(1)}</p>
+                  <div
+                    key={c.id}
+                    className="p-3 border border-gray-400 rounded-lg bg-gray-50"
+                  >
+                    <p className="text-sm text-gray-500 font-medium tracking-widest">
+                      {c.Name.charAt(0).toUpperCase() + c.Name.slice(1)}
+                    </p>
                     <p className="ml-2 mt-1 text-2xl">{c.Text}</p>
                   </div>
                 ))}
               </div>
             </div>
             <div className="mt-10">
-              <h1 className="text-2xl md:text-4xl font-serif text-black mt-2 md:mt-5 py-5 ">Leave a Comment</h1>
-              <form
-                onSubmit={handleCommentSubmit}
-                className="space-y-4 pt-4"
-              >
+              <h1 className="text-2xl md:text-4xl font-serif text-black mt-2 md:mt-5 py-5 ">
+                Leave a Comment
+              </h1>
+              <form onSubmit={handleCommentSubmit} className="space-y-4 pt-4">
                 <input
                   type="text"
                   required
@@ -311,7 +325,7 @@ export default function BlogDetail() {
                   className="w-[100px] aspect-square object-cover rounded-2xl m-3 mb-5"
                   src={
                     item.CoverImage?.url
-                      ? `http://localhost:1337${item.CoverImage.url}`
+                      ? `https://strapi-9b98.onrender.com/{item.CoverImage.url}`
                       : "/assets/happy_women.jpg"
                   }
                   alt={item.Title}
