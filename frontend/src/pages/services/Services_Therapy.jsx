@@ -48,12 +48,11 @@ const togetherData = [
 export default function Services_Therapy() {
   return (
     <div>
-      {/* Service Details */}
-      <section className="relative flex items-center justify-center bg-[url('/assets/hero_services.jpg')] bg-cover  text-white py-50  mb-4">
+      <section className="relative flex items-center justify-center bg-[url('/assets/hero_services.jpg')] bg-cover  h-[80vh] md:h-[90vh] overflow-hidden  text-white py-50  mb-4">
         <div className="flex w-[80%]">
           <div className="relative z-10 max-w-7xl  flex-col ">
             <h1 className="font-plus-jakarta mb-4 tracking-widest  ">
-              SERVICES
+              SERVICES 
             </h1>
             <p className="font-castoro text-4xl md:text-6xl  mb-2">
               Online Therapy & Counselling Service
@@ -67,7 +66,7 @@ export default function Services_Therapy() {
         </div>
 
         <img
-          className="absolute bottom-0 z-10 "
+          className="absolute bottom-0 z-10"
           src="/assets/white_bottom.png"
         />
       </section>

@@ -35,16 +35,13 @@ export default function Navbar() {
         onClick={(e) => {
           e.preventDefault();
           if (location.pathname !== "/") {
-            // Navigate to "/" and pass scroll target in state
             navigate("/", { state: { scrollTo: ref } });
           } else {
             scrollToId(ref);
           }
         }}
         href={href}
-        className={`px-2 py-2 text-sm font-semibold ${
-          scrolled ? "text-slate-700" : "text-white"
-        } hover:text-primary hover:text-[#4FA2B8]`}
+        className={`px-2 py-2 text-sm font-semibold text-slate-700 hover:text-[#4FA2B8]`}
       >
         {children}
       </a>
@@ -53,11 +50,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
-        scrolled || open 
-          ? "backdrop-blur bg-white/90 shadow-sm"
-          : "bg-transparent"
-      }${location.pathname.includes("admin")? " z-[-10] hidden ":""}`}
+      className={` sticky top-0 left-0 right-0 z-100 transition-all duration-300 ease-in-out backdrop-blur bg-white/90 shadow-sm`}
     >
       
       <div className="mx-auto flex  max-w-7xl items-center justify-between px-4 py-2 md:py-0.5">
@@ -70,7 +63,7 @@ export default function Navbar() {
           className="flex items-center gap-2"
         >
           <img
-            className="h-13 w-auto ml-5 mr-5 md:h-18"
+            className="h-13 w-auto ml-5 mr-5 md:h-15"
             src={logo}
             alt="uturn_logo"
           />
@@ -84,9 +77,8 @@ export default function Navbar() {
               onMouseLeave={handleMouseLeave}
             >
               <button
-                className={`text-sm font-semibold flex items-center h-auto gap-1 cursor-pointer ${
-                  scrolled ? "text-slate-700" : "text-white"
-                } hover:text-[#4FA2B8] transition-colors duration-200`}
+                className={`text-sm font-semibold flex items-center h-auto gap-1 cursor-pointer text-slate-700
+                hover:text-[#4FA2B8] transition-colors duration-200`}
                 onClick={(e) => {
                   e.preventDefault();
                   navigate("/services_therapy");
@@ -97,54 +89,14 @@ export default function Navbar() {
                 }}
               >
                 Services
-                {/* <svg
-                  className={`w-4 h-4 transition-transform duration-300 ${
-                    isDropdownOpen ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M19 9l-7 7-7-7" />
-                </svg> */}
               </button>
 
-              {/* {isDropdownOpen && (
-                <div className="absolute left-0 top-full mt-1 w-52 origin-top scale-100 rounded-lg bg-white p-2 shadow-lg ring-1 ring-slate-200 ring-opacity-40 transition-all duration-300 ease-out z-50">
-                  <a
-                    href="#web-dev"
-                    onClick={(e) => {
-                      e.preventDefault();
-
-                      setIsDropdownOpen(false);
-                      navigate("/services_therapy")
-                    }}
-                    className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#4FA2B8] transition-all duration-200"
-                  >
-                    THERAPY
-                  </a>
-                  <a
-                    href="#mobile-apps"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsDropdownOpen(false);
-                      navigate("/services_therapy")
-                    }}
-                    className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#4FA2B8] transition-all duration-200"
-                  >
-                    COUNSELING
-                  </a>
-                </div>
-              )} */}
             </div>
 
             <LinkItem href="#about">About</LinkItem>
             <LinkItem href="#team">Team</LinkItem>
             <button
-              className={`text-sm font-semibold flex items-center h-auto px-2 py-2 cursor-pointer ${
-                scrolled ? "text-slate-700" : "text-white"
-              } hover:text-[#4FA2B8] transition-colors duration-200`}
+              className={`text-sm font-semibold flex items-center h-auto px-2 py-2 cursor-pointer text-slate-700 hover:text-[#4FA2B8] transition-colors duration-200`}
               onClick={(e) => {
                 e.preventDefault();
                 navigate("/blog");

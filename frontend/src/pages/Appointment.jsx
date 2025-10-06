@@ -13,7 +13,7 @@ export default function Appointment() {
 
   return (
     <div>
-      <section className="relative flex items-center justify-center bg-[url('/assets/hero_contact.jpg')] bg-cover  text-white py-50  mb-4">
+      <section className="relative flex items-center justify-center bg-[url('/assets/hero_contact.jpg')] bg-cover relative h-[80vh] md:h-[90vh] overflow-hidden  text-white py-50  mb-4">
         <div className="relative z-10 max-w-7xl  flex-col items-center text-center">
           <h1 className="font-plus-jakarta mb-5 tracking-widest text-amber-500 items-center">
             CONTACT US
