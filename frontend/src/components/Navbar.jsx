@@ -58,9 +58,14 @@ export default function Navbar() {
           onClick={(e) => {
             setScrolled(false);
             e.preventDefault();
+            if (location.pathname !== "/") {
+              navigate("/", { state: { scrollTo: "home" } });
+            }else{
             scrollToId("home");
+
+          }
           }}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 cursor-pointer"
         >
           <img
             className="h-13 w-auto ml-5 mr-5 md:h-15"
@@ -94,7 +99,6 @@ export default function Navbar() {
             </div>
 
             <LinkItem href="#about">About</LinkItem>
-            <LinkItem href="#team">Team</LinkItem>
             <button
               className={`text-sm font-semibold flex items-center h-auto px-2 py-2 cursor-pointer text-slate-700 hover:text-[#4FA2B8] transition-colors duration-200`}
               onClick={(e) => {
@@ -149,7 +153,7 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden border-t bg-white transition-all duration-400 ease-in-out">
           <div className="mx-auto flex max-w-7xl flex-col items-center px-4 py-2">
-            {["home", "services", "about", "team", "blog", "contact"].map(
+            {["home", "services", "about", "blog", "contact"].map(
               (id) => {
                 if (id !== "blog") {
                   return (
