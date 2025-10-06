@@ -52,7 +52,6 @@ export default function Navbar() {
     <header
       className={` sticky top-0 left-0 right-0 z-100 transition-all duration-300 ease-in-out backdrop-blur bg-white/90 shadow-sm`}
     >
-      
       <div className="mx-auto flex  max-w-7xl items-center justify-between px-4 py-2 md:py-0.5">
         <a
           onClick={(e) => {
@@ -62,7 +61,6 @@ export default function Navbar() {
               navigate("/", { state: { scrollTo: "home" } });
             }else{
             scrollToId("home");
-
           }
           }}
           className="flex items-center gap-2 cursor-pointer"
@@ -95,7 +93,6 @@ export default function Navbar() {
               >
                 Services
               </button>
-
             </div>
 
             <LinkItem href="#about">About</LinkItem>
