@@ -41,6 +41,7 @@ export default function Services() {
     >
       <div className=" w-[100%] md:max-w-7xl md:px-6 grid grid-cols-1 lg:grid-cols-2 gap-12  ">
         {/* Left column */}
+        <div className="m-auto">
         <div className="max-w-xl  flex flex-col justify-center">
           <p className="uppercase text-primary tracking-widest font-bold text-[#4FA2B8] ml-1 mb-2">
             SERVICES
@@ -73,7 +74,7 @@ export default function Services() {
             <AnimatedArrow txt_value="Explore Services" href="/services_therapy" />
           </div>
         </div>
-
+        </div>
         {/* Right column (cards grid) */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[500px] mx-auto">
