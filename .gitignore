@@ -1,0 +1,10 @@
+# Ignore all node_modules folders
+**/node_modules/
+
+# Optional: OS / editor files
+.DS_Store
+Thumbs.db
+*.log
+
+# Optional: Environment files
+.env
