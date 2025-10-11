@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 
-const AnimatedArrow = ({ txt_value = "Get Started", href = "#" }) => {
+const AnimatedArrow = ({  txt_value = "Get Started", href = "#" }) => {
   const navigate = useNavigate();
   return (
     <a
@@ -12,7 +12,7 @@ const AnimatedArrow = ({ txt_value = "Get Started", href = "#" }) => {
           behavior: "smooth",
         });
       }}
-      className="group inline-flex items-center justify-center cursor-pointer px-5 py-3 ml-2 z-10 bg-[#4FA2B8] hover:bg-amber-500 text-white text-base font-semibold rounded-full transition duration-300 overflow-hidden"
+      className={`group inline-flex items-center justify-center cursor-pointer px-5 py-3 ml-2 z-10 bg-[#4FA2B8] hover:bg-amber-500 text-white text-base font-semibold rounded-full transition duration-300 overflow-hidden`}
     >
       {txt_value}
       <span className="ml-2 relative flex items-center">

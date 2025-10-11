@@ -46,7 +46,7 @@ export default function Hero() {
               <p className="text-lg font-plus-jakarta mb-4 tracking-widest text-white/90">
                 {s.text}
               </p>
-              <div className="mt-6 flex items-center justify-center gap-4">
+              <div className="mt-6 flex flex-col md:flex-row items-center justify-center gap-4">
                 <a
                   href="#services"
                   className="rounded-full bg-white px-6 py-3 font-semibold text-primary"
